@@ -340,3 +340,8 @@ cd /path/to/radiation_isaacsim_ws
 - 시나리오 orchestration은 `scripts/`에 둡니다.
 - 월드 설정은 per-world 데이터 중심 구조입니다.
 - 이 워크스페이스는 Isaac Sim 직접 실행 또는 Isaac Sim Docker 기준으로 외부 `IsaacLab` 프로젝트 폴더 없이 독립적으로 사용하는 것을 목표로 합니다.
+
+## Contact
+
+Maintainer: jth8090 ([jth8090@khu.ac.kr](mailto:jth8090@khu.ac.kr))  
+Lab: [RCI Lab @ Kyung Hee University](https://rcilab.khu.ac.kr)
