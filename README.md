@@ -66,8 +66,8 @@ cd /path/to/radiation_isaacsim_ws
 
 - `assets/`
   - World USD/USD[A] files and robot assets used by the scenarios.
-  - `reactor_room` assets are based on the environment described in Wright et al., "Simulating Ionising Radiation in Gazebo for Robotic Nuclear Inspection Challenges" (Robotics 2021, 10, 86, https://doi.org/10.3390/robotics10030086) and the public repository https://github.com/EEEManchester/gazebosim_world_generator.
-  - Keep the original attribution when using these assets, and obtain permission from the original authors or rightsholders before redistributing the asset files.
+  - **`reactor_room` assets are based on the environment described in Wright et al., "Simulating Ionising Radiation in Gazebo for Robotic Nuclear Inspection Challenges" (Robotics 2021, 10, 86, https://doi.org/10.3390/robotics10030086) and the public repository https://github.com/EEEManchester/gazebosim_world_generator.**
+  - **Keep the original attribution when using these assets, and obtain permission from the original authors or rightsholders before redistributing the asset files.**
 - `config/`
   - Workspace-level settings.
   - `current_world_name.txt` selects the default world when a script does not receive `--cfg-world`.
