@@ -1,0 +1,338 @@
+#usda 1.0
+(
+    defaultPrim = "jackal"
+    metersPerUnit = 1
+    subLayers = [
+        @jackal_base_scoped.usd@
+    ]
+    upAxis = "Z"
+)
+
+def PhysicsScene "physicsScene" (
+    prepend apiSchemas = ["PhysxSceneAPI"]
+)
+{
+    vector3f physics:gravityDirection = (0, 0, -1)
+    float physics:gravityMagnitude = 9.81
+    uniform token physxScene:broadphaseType = "MBP"
+    bool physxScene:enableCCD = 1
+    bool physxScene:enableGPUDynamics = 0
+    bool physxScene:enableStabilization = 1
+    uniform token physxScene:solverType = "TGS"
+}
+
+over "jackal"
+{
+    over "base_link" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI", "PhysicsArticulationRootAPI", "PhysxArticulationAPI"]
+    )
+    {
+        float3 physics:diagonalInertia = (0.0001, 0.0001, 0.0001)
+        bool physxArticulation:enabledSelfCollisions = 0
+        int physxArticulation:solverPositionIterationCount = 32
+        int physxArticulation:solverVelocityIterationCount = 1
+
+        def Xform "collisions"
+        {
+        }
+    }
+
+    over "chassis_link" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0.012, 0.002, 0.067000024)
+        float3 physics:diagonalInertia = (0.31162903, 0.3921891, 0.45048192)
+        float physics:mass = 16.523
+        quatf physics:principalAxes = (0.99817747, 0.008721574, 0.059596453, 0.0037520933)
+
+        def Xform "collisions" (
+            instanceable = true
+            prepend references = </colliders/chassis_link>
+        )
+        {
+        }
+    }
+
+    over "joints"
+    {
+        def PhysicsFixedJoint "base_link_joint"
+        {
+            rel physics:body0 = </jackal/base_link>
+            rel physics:body1 = </jackal/chassis_link>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            float physics:JointEquivalentInertia = 0
+            point3f physics:localPos0 = (0, 0, 0)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+        }
+
+        def PhysicsRevoluteJoint "front_left_wheel_joint" (
+            prepend apiSchemas = ["PhysxJointAPI", "PhysicsDriveAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 23.514273
+            float drive:angular:physics:maxForce = 3.4028235e38
+            float drive:angular:physics:stiffness = 0
+            float drive:angular:physics:targetVelocity = 0
+            uniform token drive:angular:physics:type = "force"
+            uniform token physics:axis = "Y"
+            rel physics:body0 = </jackal/chassis_link>
+            rel physics:body1 = </jackal/front_left_wheel_link>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            float physics:JointEquivalentInertia = 0.037622835
+            point3f physics:localPos0 = (0.131, 0.187795, 0.0345)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -inf
+            float physics:upperLimit = inf
+            float physxJoint:maxJointVelocity = inf
+        }
+
+        def PhysicsRevoluteJoint "front_right_wheel_joint" (
+            prepend apiSchemas = ["PhysxJointAPI", "PhysicsDriveAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 23.52143
+            float drive:angular:physics:maxForce = 3.4028235e38
+            float drive:angular:physics:stiffness = 0
+            float drive:angular:physics:targetVelocity = 0
+            uniform token drive:angular:physics:type = "force"
+            uniform token physics:axis = "Y"
+            rel physics:body0 = </jackal/chassis_link>
+            rel physics:body1 = </jackal/front_right_wheel_link>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            float physics:JointEquivalentInertia = 0.037634287
+            point3f physics:localPos0 = (0.131, -0.187795, 0.0345)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -inf
+            float physics:upperLimit = inf
+            float physxJoint:maxJointVelocity = inf
+        }
+
+        def PhysicsFixedJoint "imu_joint"
+        {
+            rel physics:body0 = </jackal/chassis_link>
+            rel physics:body1 = </jackal/imu_link>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            float physics:JointEquivalentInertia = 1.7320507e-9
+            point3f physics:localPos0 = (0, 0, 0)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+        }
+
+        def PhysicsRevoluteJoint "rear_left_wheel_joint" (
+            prepend apiSchemas = ["PhysxJointAPI", "PhysicsDriveAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 23.54311
+            float drive:angular:physics:maxForce = 3.4028235e38
+            float drive:angular:physics:stiffness = 0
+            float drive:angular:physics:targetVelocity = 0
+            uniform token drive:angular:physics:type = "force"
+            uniform token physics:axis = "Y"
+            rel physics:body0 = </jackal/chassis_link>
+            rel physics:body1 = </jackal/rear_left_wheel_link>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            float physics:JointEquivalentInertia = 0.037668977
+            point3f physics:localPos0 = (-0.131, 0.187795, 0.0345)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -inf
+            float physics:upperLimit = inf
+            float physxJoint:maxJointVelocity = inf
+        }
+
+        def PhysicsRevoluteJoint "rear_right_wheel_joint" (
+            prepend apiSchemas = ["PhysxJointAPI", "PhysicsDriveAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = 23.549662
+            float drive:angular:physics:maxForce = 3.4028235e38
+            float drive:angular:physics:stiffness = 0
+            float drive:angular:physics:targetVelocity = 0
+            uniform token drive:angular:physics:type = "force"
+            uniform token physics:axis = "Y"
+            rel physics:body0 = </jackal/chassis_link>
+            rel physics:body1 = </jackal/rear_right_wheel_link>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            float physics:JointEquivalentInertia = 0.03767946
+            point3f physics:localPos0 = (-0.131, -0.187795, 0.0345)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -inf
+            float physics:upperLimit = inf
+            float physxJoint:maxJointVelocity = inf
+        }
+    }
+
+    over "front_left_wheel_link" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0, 0, 0)
+        float3 physics:diagonalInertia = (0.0013, 0.0024, 0.0013)
+        float physics:mass = 0.477
+        quatf physics:principalAxes = (1, 0, 0, 0)
+
+        def Xform "collisions" (
+            instanceable = true
+            prepend references = </colliders/front_left_wheel_link>
+        )
+        {
+        }
+    }
+
+    over "front_right_wheel_link" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0, 0, 0)
+        float3 physics:diagonalInertia = (0.0013, 0.0024, 0.0013)
+        float physics:mass = 0.477
+        quatf physics:principalAxes = (1, 0, 0, 0)
+
+        def Xform "collisions" (
+            instanceable = true
+            prepend references = </colliders/front_right_wheel_link>
+        )
+        {
+        }
+    }
+
+    over "imu_link" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0, 0, 0)
+        float3 physics:diagonalInertia = (1e-9, 1e-9, 1e-9)
+        float physics:mass = 0.001
+        quatf physics:principalAxes = (1, 0, 0, 0)
+
+        def Xform "collisions"
+        {
+        }
+    }
+
+    over "rear_left_wheel_link" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0, 0, 0)
+        float3 physics:diagonalInertia = (0.0013, 0.0024, 0.0013)
+        float physics:mass = 0.477
+        quatf physics:principalAxes = (1, 0, 0, 0)
+
+        def Xform "collisions" (
+            instanceable = true
+            prepend references = </colliders/rear_left_wheel_link>
+        )
+        {
+        }
+    }
+
+    over "rear_right_wheel_link" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0, 0, 0)
+        float3 physics:diagonalInertia = (0.0013, 0.0024, 0.0013)
+        float physics:mass = 0.477
+        quatf physics:principalAxes = (1, 0, 0, 0)
+
+        def Xform "collisions" (
+            instanceable = true
+            prepend references = </colliders/rear_right_wheel_link>
+        )
+        {
+        }
+    }
+}
+
+over "colliders"
+{
+    over "chassis_link"
+    {
+        over "mesh_0"
+        {
+            over "box" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+            }
+        }
+    }
+
+    over "front_left_wheel_link"
+    {
+        over "mesh_0"
+        {
+            over "cylinder" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+            }
+        }
+    }
+
+    over "front_right_wheel_link"
+    {
+        over "mesh_0"
+        {
+            over "cylinder" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+            }
+        }
+    }
+
+    over "rear_left_wheel_link"
+    {
+        over "mesh_0"
+        {
+            over "cylinder" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+            }
+        }
+    }
+
+    over "rear_right_wheel_link"
+    {
+        over "mesh_0"
+        {
+            over "cylinder" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+            }
+        }
+    }
+
+    def PhysicsCollisionGroup "robotCollisionGroup"
+    {
+        prepend rel collection:colliders:includes = </jackal>
+    }
+
+    def PhysicsCollisionGroup "collidersCollisionGroup"
+    {
+        prepend rel collection:colliders:includes = </colliders>
+        prepend rel physics:filteredGroups = </colliders/robotCollisionGroup>
+    }
+}
+

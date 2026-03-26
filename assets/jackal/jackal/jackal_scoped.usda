@@ -1,0 +1,8 @@
+#usda 1.0
+(
+    defaultPrim = "jackal"
+    subLayers = [
+        @configuration/jackal_base_scoped.usd@,
+        @configuration/jackal_physics_scoped.usd@,
+    ]
+)
