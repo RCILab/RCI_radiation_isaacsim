@@ -1,0 +1,14 @@
+[sources]
+default_intensity = 2000.0
+default_radius = 0.1
+create_point_prims = true
+point_prim_parent = "/World/RadiationSources"
+point_marker_radius = 0.28
+point_marker_visible = true
+
+[[sources.points]]
+name = "radiation_source_demoSource"
+pos = [-4.0, 0.0, 1.0]
+intensity = 2000.0
+radius = 0.1
+enabled = true

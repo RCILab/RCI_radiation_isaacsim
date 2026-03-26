@@ -1,0 +1,88 @@
+services:
+  radiation-headless:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: radiation-isaacsim:5.1.0
+    container_name: radiation-isaacsim-headless
+    network_mode: host
+    shm_size: "8gb"
+    stdin_open: true
+    tty: true
+    gpus: all
+    environment:
+      ACCEPT_EULA: "Y"
+      PRIVACY_CONSENT: "Y"
+      DISPLAY: "${DISPLAY:-}"
+    volumes:
+      - isaac-cache:/isaac-sim/.cache
+      - isaac-compute-cache:/isaac-sim/.nv/ComputeCache
+      - isaac-logs:/isaac-sim/.nvidia-omniverse/logs
+      - isaac-config:/isaac-sim/.nvidia-omniverse/config
+      - isaac-data:/isaac-sim/.local/share/ov/data
+      - isaac-pkg:/isaac-sim/.local/share/ov/pkg
+    command: ["run-simulation", "--headless"]
+
+  radiation-gui:
+    profiles: ["gui"]
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: radiation-isaacsim:5.1.0
+    container_name: radiation-isaacsim-gui
+    network_mode: host
+    shm_size: "8gb"
+    stdin_open: true
+    tty: true
+    gpus: all
+    environment:
+      ACCEPT_EULA: "Y"
+      PRIVACY_CONSENT: "Y"
+      DISPLAY: "${DISPLAY:-:0}"
+      QT_X11_NO_MITSHM: "1"
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${HOME}/.Xauthority:/root/.Xauthority:rw
+      - isaac-cache:/isaac-sim/.cache
+      - isaac-compute-cache:/isaac-sim/.nv/ComputeCache
+      - isaac-logs:/isaac-sim/.nvidia-omniverse/logs
+      - isaac-config:/isaac-sim/.nvidia-omniverse/config
+      - isaac-data:/isaac-sim/.local/share/ov/data
+      - isaac-pkg:/isaac-sim/.local/share/ov/pkg
+    command: ["run-simulation"]
+
+  radiation-demo-gui:
+    profiles: ["gui"]
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: radiation-isaacsim:5.1.0
+    container_name: radiation-isaacsim-demo-gui
+    network_mode: host
+    shm_size: "8gb"
+    stdin_open: true
+    tty: true
+    gpus: all
+    environment:
+      ACCEPT_EULA: "Y"
+      PRIVACY_CONSENT: "Y"
+      DISPLAY: "${DISPLAY:-:0}"
+      QT_X11_NO_MITSHM: "1"
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${HOME}/.Xauthority:/root/.Xauthority:rw
+      - isaac-cache:/isaac-sim/.cache
+      - isaac-compute-cache:/isaac-sim/.nv/ComputeCache
+      - isaac-logs:/isaac-sim/.nvidia-omniverse/logs
+      - isaac-config:/isaac-sim/.nvidia-omniverse/config
+      - isaac-data:/isaac-sim/.local/share/ov/data
+      - isaac-pkg:/isaac-sim/.local/share/ov/pkg
+    command: ["run-demo"]
+
+volumes:
+  isaac-cache:
+  isaac-compute-cache:
+  isaac-logs:
+  isaac-config:
+  isaac-data:
+  isaac-pkg:

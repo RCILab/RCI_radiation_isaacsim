@@ -1,0 +1,21 @@
+[obstacles.auto]
+root = "/World"
+name_prefix = "radiation_obstacle_"
+material_from_name_suffix = true
+ignore_trailing_numeric_suffix = false
+
+# demo용 wall들은 mesh 파일이 아니기 때문에 bbox로 지정해서 통과 깊이 계산
+[[obstacles.override]]
+path = "/World/radiation_obstacle_demoShield1_concrete"
+material = "concrete"
+thickness_mode = "bbox"
+
+[[obstacles.override]]
+path = "/World/radiation_obstacle_demoShield2_aluminium"
+material = "aluminium"
+thickness_mode = "bbox"
+
+[[obstacles.override]]
+path = "/World/radiation_obstacle_demoShield3_stainlessSteel"
+material = "stainlessSteel"
+thickness_mode = "bbox"

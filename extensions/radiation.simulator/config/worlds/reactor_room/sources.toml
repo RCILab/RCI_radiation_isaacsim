@@ -1,0 +1,48 @@
+[sources]
+default_intensity = 500.0
+default_radius = 0.1
+
+# 좌표 기반(point) 소스를 stage에 "표시용 prim"으로 생성할지
+create_point_prims = true
+
+# 생성될 prim 부모 경로
+point_prim_parent = "/World/RadiationSources"
+
+# 표시용 구(sphere) 반지름 (점 source 마커)
+point_marker_radius = 0.05
+
+# 기본은 안 보이게(invisible). 필요하면 true로 바꿔서 보이게 할 수 있음
+point_marker_visible = true
+
+# source들의 위치는 직접 지정해야 함.
+[[sources.points]]
+name = "radiation_source_tankSet4_stainlessSteel_1"
+pos = [-0.60, 3.70, 0.5]   
+intensity = 500.0
+radius = 0.1
+enabled = true
+host_obstacle = "/World/radiation_obstacle_tankSet4_stainlessSteel_1"
+
+[[sources.points]]
+name = "radiation_source_tankSet4_stainlessSteel_2"
+pos = [1.4, 3.70, 0.5]   
+intensity = 500.0
+radius = 0.1
+enabled = true
+host_obstacle = "/World/radiation_obstacle_tankSet4_stainlessSteel_2"
+
+[[sources.points]]
+name = "radiation_source_tankSet1_stainlessSteel_2"
+pos = [2.4013, -6.35, 0.5]   
+intensity = 500.0
+radius = 0.1
+enabled = true
+host_obstacle = "/World/radiation_obstacle_tankSet1_stainlessSteel_2"
+
+[[sources.points]]
+name = "radiation_source_tankSet3Tank_stainlessSteel_1"
+pos = [8.07, -4.45, 0.5]   
+intensity = 500.0
+radius = 0.1
+enabled = true
+host_obstacle = "/World/radiation_obstacle_tankSet3Tank_stainlessSteel_1"

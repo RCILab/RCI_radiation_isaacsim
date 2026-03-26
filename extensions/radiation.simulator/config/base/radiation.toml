@@ -1,0 +1,9 @@
+[radiation]
+is_source_key   = "radiation:is_source"
+is_obstacle_key = "radiation:is_obstacle"
+material_key    = "radiation:material"
+mu_key          = "radiation:mu"
+intensity_key   = "radiation:intensity"
+radius_key      = "radiation:radius"
+
+strict_material_lookup = true

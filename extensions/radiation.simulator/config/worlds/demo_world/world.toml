@@ -1,0 +1,3 @@
+[world]
+usd = "demo_world.usda"     # asseets/world 내부에서
+root = "/World"

@@ -1,0 +1,13 @@
+[sensors]
+is_sensor_key = "radiation:is_sensor"
+sensor_name_key = "radiation:sensor_name"
+sensor_prim_name = "RadiationSensor"
+
+[[sensors.items]]
+name = "demo_sensor"
+attach_prim = "/World/DemoSensorAnchor"
+sensor_prim_name = "RadiationSensor"
+offset = [0.0, 0.0, 0.0]
+
+[monitor]
+threshold = 100.0

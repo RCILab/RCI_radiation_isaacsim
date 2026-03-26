@@ -1,0 +1,14 @@
+[package]
+version = "0.1.0"
+title = "Radiation Simulator"
+description = "Radiation source/obstacle/sensor runtime for Isaac Sim."
+authors = ["Taehyun Jung (RCILab at Kyung Hee University)"]
+category = "Simulation"
+keywords = ["radiation", "isaacsim", "sensor", "physics"]
+
+[dependencies]
+"omni.usd" = {}
+"omni.physx" = {}
+
+[[python.module]]
+name = "radiation_simulator.extension"

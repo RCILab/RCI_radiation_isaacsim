@@ -1,0 +1,3 @@
+[world]
+usd = "reactor_room_2.usd"      # asseets/world 내부에서
+root = "/World"

@@ -1,0 +1,23 @@
+[sensors]
+is_sensor_key = "radiation:is_sensor"
+sensor_name_key = "radiation:sensor_name"
+sensor_prim_name = "RadiationSensor"
+
+# Multi-spawn scenarios should pass robots_override from the scenario script.
+# Keep this file as a template unless you want fixed sensors authored from config.
+
+# [[sensors.robots]]
+# id = "jackal_00"
+# root = "/World/jackal_00"
+# attach_link = "robot/base_link"
+# sensor_prim_name = "RadiationSensor"
+# offset = [0.0, 0.0, 0.25]
+
+# [[sensors.items]]
+# name = "fixed_sensor_A"
+# attach_prim = "/World/SomePrimPath"
+# sensor_prim_name = "RadiationSensor"
+# offset = [0.1, 0.0, 0.2]
+
+[monitor]
+threshold = 100.0

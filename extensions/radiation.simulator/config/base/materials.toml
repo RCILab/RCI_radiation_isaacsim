@@ -1,0 +1,13 @@
+[materials.mu]
+boratedConcrete = 20.0
+concrete        = 0.5
+stainlessSteel  = 1.5
+steel           = 0.15
+aluminium       = 0.7
+wood            = 0.5
+lead            = 2.0
+
+# 대체
+[materials.alias]
+SS = "stainlessSteel"
+Al = "aluminium"
