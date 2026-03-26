@@ -66,8 +66,8 @@ cd /path/to/radiation_isaacsim_ws
 
 - `assets/`
   - 월드 USD/USD[A] 파일과 로봇 assets가 들어 있습니다.
-  - `reactor_room` 의 assets는 Wright et al., "Simulating Ionising Radiation in Gazebo for Robotic Nuclear Inspection Challenges" (Robotics 2021, 10, 86, https://doi.org/10.3390/robotics10030086) 논문과 공개 저장소 https://github.com/EEEManchester/gazebosim_world_generator 를 기반으로 사용합니다.
-  - 이 자산을 사용할 때는 원 출처 표기를 유지하고, 자산 파일 자체를 재배포할 경우 원 저작자 또는 권리 보유자의 허락을 받는 것을 권장합니다.
+  - **`reactor_room` 의 assets는 Wright et al., "Simulating Ionising Radiation in Gazebo for Robotic Nuclear Inspection Challenges" (Robotics 2021, 10, 86, https://doi.org/10.3390/robotics10030086) 논문과 공개 저장소 https://github.com/EEEManchester/gazebosim_world_generator 를 기반으로 사용합니다.**
+  - **이 assets을 사용할 때는 원 출처 표기를 유지하고, 자산 파일 자체를 재배포할 경우 원 저작자 또는 권리 보유자의 허락을 받는 것을 권장합니다.**
 - `config/`
   - 워크스페이스 수준 설정이 들어 있습니다.
   - `current_world_name.txt`는 기본 월드 이름을 정합니다.
