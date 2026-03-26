@@ -340,3 +340,8 @@ If you are actively developing the radiation logic:
 - Scenario orchestration stays in `scripts/`.
 - World configuration is per-world and data-driven.
 - The workspace is meant to run independently from an external `IsaacLab` project folder when used with Isaac Sim directly or with Isaac Sim Docker.
+
+## Contact
+
+Maintainer: jth8090 ([jth8090@khu.ac.kr](mailto:jth8090@khu.ac.kr))  
+Lab: [RCI Lab @ Kyung Hee University](https://rcilab.khu.ac.kr)
